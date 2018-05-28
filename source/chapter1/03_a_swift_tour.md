@@ -86,6 +86,7 @@ let label = "The width is"
 let width = 94
 let widthLabel = label + String(width)
 ```
+
 > 练习
 > 
 > 删除最后一行中的 `String`，错误提示是什么？
@@ -230,7 +231,7 @@ print(largest)
 
 > 练习
 > 
-> 添加另一个变量来记录最大数字的种类(kind)，同时仍然记录这个最大数字的值。
+> 添加另一个变量来记录最大数字的种类（kind），同时仍然记录这个最大数字的值。
 
 使用 `while` 来重复运行一段代码直到条件改变。循环条件也可以在结尾，保证能至少循环一次。
 
@@ -610,10 +611,10 @@ enum ServerResponse {
     case result(String, String)
     case failure(String)
 }
- 
+
 let success = ServerResponse.result("6:00 am", "8:09 pm")
 let failure = ServerResponse.failure("Out of cheese.")
- 
+
 switch success {
 case let .result(sunrise, sunset):
     print("Sunrise is at \(sunrise) and sunset is at \(sunset)")

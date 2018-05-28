@@ -12,7 +12,7 @@
 > 翻译：[Prayer](https://github.com/futantan)
 > 校对：[shanks](http://codebuild.me)，2015-11-01
 
-> 2.2 
+> 2.2
 > 翻译+校对：[SketchK](https://github.com/SketchK) 2016-05-17
 
 > 3.0.1
@@ -77,7 +77,7 @@ Open 只能作用于类和类的成员，它和 Public 的区别如下：
 * Public 或者其它更严访问级别的类成员，只能在其定义的模块内部的子类中重写。
 * Open 的类，可以在其定义的模块中被继承，也可以在引用它的模块中被继承。
 * Open 的类成员，可以在其定义的模块中子类中重写，也可以在引用它的模块中的子类重写。
- 
+
 把一个类标记为 `open`，明确的表示你已经充分考虑过外部模块使用此类作为父类的影响，并且设计好了你的类的代码了。
 
 <a name="guiding_principle_of_access_levels"></a>
@@ -126,7 +126,7 @@ public class SomePublicClass {}
 internal class SomeInternalClass {}
 fileprivate class SomeFilePrivateClass {}
 private class SomePrivateClass {}
- 
+
 public var somePublicVariable = 0
 internal let someInternalConstant = 0
 fileprivate func someFilePrivateFunction() {}
@@ -158,23 +158,23 @@ public class SomePublicClass {                  // 显式 public 类
     fileprivate func someFilePrivateMethod() {}  // 显式 fileprivate 类成员
     private func somePrivateMethod() {}          // 显式 private 类成员
 }
- 
+
 class SomeInternalClass {                       // 隐式 internal 类
     var someInternalProperty = 0                 // 隐式 internal 类成员
     fileprivate func someFilePrivateMethod() {}  // 显式 fileprivate 类成员
     private func somePrivateMethod() {}          // 显式 private 类成员
 }
- 
+
 fileprivate class SomeFilePrivateClass {        // 显式 fileprivate 类
     func someFilePrivateMethod() {}              // 隐式 fileprivate 类成员
     private func somePrivateMethod() {}          // 显式 private 类成员
 }
- 
+
 private class SomePrivateClass {                // 显式 private 类
     func somePrivateMethod() {}                  // 隐式 private 类成员
 }
 
-```
+```swift
 <a name="tuple_types"></a>
 ### 元组类型
 
@@ -434,7 +434,7 @@ extension SomeStruct: SomeProtocol {
 <a name="type_aliases"></a>
 ## 类型别名
 
-你定义的任何类型别名都会被当作不同的类型，以便于进行访问控制。类型别名的访问级别不可高于其表示的类型的访问级别。例如，`private` 级别的类型别名可以作为 `private`，`file-private`，`internal`，`public` 或者 `open` 类型的别名，但是 `public` 级别的类型别名只能作为 `public` 类型的别名，不能作为 `internal`，`file-private`，或 `private` 类型的别名。
+你定义的任何类型别名都会被当作不同的类型，以便于进行访问控制。类型别名的访问级别不可高于其表示的类型的访问级别。例如，`private` 级别的类型别名可以作为 `private`、`file-private`、`internal`、`public` 或者 `open` 类型的别名，但是 `public` 级别的类型别名只能作为 `public` 类型的别名，不能作为 `internal`、`file-private` 或 `private` 类型的别名。
 
 > 注意
 > 

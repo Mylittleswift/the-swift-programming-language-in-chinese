@@ -13,7 +13,7 @@
 > 校对：[shanks](http://codebuild.me)
 > 
 > 2.2
-> 翻译+校对：[SketchK](https://github.com/SketchK) 
+> 翻译+校对：[SketchK](https://github.com/SketchK)
 > 
 > 3.0
 > 校对：[CMB](https://github.com/chenmingbiao)，版本日期：2016-09-13
@@ -699,13 +699,13 @@ class City: Location, Named {
 func beginConcert(in location: Location & Named) {
     print("Hello, \(location.name)!")
 }
- 
+
 let seattle = City(name: "Seattle", latitude: 47.6, longitude: -122.3)
 beginConcert(in: seattle)
 // Prints "Hello, Seattle!"
 ```
 
-`beginConcert(in:)` 方法接受一个类型为 `Location & Named` 的参数，这意味着"任何 Location 的子类，并且遵循 Named 协议"。例如，City 就满足这样的条件。
+`beginConcert(in:)` 方法接受一个类型为 `Location & Named` 的参数，这意味着“任何 Location 的子类，并且遵循 Named 协议”。例如，City 就满足这样的条件。
 
 将 birthdayPerson 传入 `beginConcert(in:)` 函数是不合法的，因为 Person 不是一个 Location 的子类。就像，如果你新建一个类继承与 Location，但是没有遵循 Named 协议，你用这个类的实例去调用 `beginConcert(in:)` 函数也是不合法的。
 
@@ -967,6 +967,7 @@ extension Collection where Element: Equatable {
 let equalNumbers = [100, 100, 100, 100, 100]
 let differentNumbers = [100, 100, 200, 100, 200]
 ```
+
 由于数组遵循 `Collection` 而且整数遵循 `Equatable`，`equalNumbers` 和 `differentNumbers` 都可以使用 `allEqual()` 方法。
 
 

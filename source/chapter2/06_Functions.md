@@ -34,7 +34,7 @@
 - [函数类型](#Function_Types)
 - [嵌套函数](#Nested_Functions)
 
-*函数*是一段完成特定任务的独立代码片段。你可以通过给函数命名来标识某个函数的功能，这个名字可以被用来在需要的时候"调用"这个函数来完成它的任务。
+*函数*是一段完成特定任务的独立代码片段。你可以通过给函数命名来标识某个函数的功能，这个名字可以被用来在需要的时候“调用”这个函数来完成它的任务。
 
 Swift 统一的函数语法非常的灵活，可以用来表示任何函数，包括从最简单的没有参数名字的 C 风格函数，到复杂的带局部和外部参数名的 Objective-C 风格函数。参数可以提供默认值，以简化函数调用。参数也可以既当做传入参数，也当做传出参数，也就是说，一旦函数执行结束，传入的参数值将被修改。
 
@@ -145,7 +145,7 @@ greet(person: "Dave")
 
 > 注意
 > 
-> 严格上来说，虽然没有返回值被定义，`greet(person:)` 函数依然返回了值。没有定义返回类型的函数会返回一个特殊的 `Void` 值。它其实是一个空的元组，没有任何元素，可以写成()。
+> 严格上来说，虽然没有返回值被定义，`greet(person:)` 函数依然返回了值。没有定义返回类型的函数会返回一个特殊的 `Void` 值。它其实是一个空的元组，没有任何元素，可以写成 `()`。
 
 被调用时，一个函数的返回值可以被忽略：
 
@@ -246,7 +246,7 @@ if let bounds = minMax(array: [8, -6, 2, 109, 3, 71]) {
 <a name="Function_Argument_Labels_and_Parameter_Names"></a>
 ## 函数参数标签和参数名称
 
-每个函数参数都有一个*参数标签( argument label )*以及一个*参数名称( parameter name )*。参数标签在调用函数的时候使用；调用的时候需要将函数的参数标签写在对应的参数前面。参数名称在函数的实现中使用。默认情况下，函数参数使用参数名称来作为它们的参数标签。
+每个函数参数都有一个*参数标签（argument label）*以及一个*参数名称（parameter name）*。参数标签在调用函数的时候使用；调用的时候需要将函数的参数标签写在对应的参数前面。参数名称在函数的实现中使用。默认情况下，函数参数使用参数名称来作为它们的参数标签。
 
 ```swift
 func someFunction(firstParameterName: Int, secondParameterName: Int) {
@@ -283,7 +283,7 @@ print(greet(person: "Bill", from: "Cupertino"))
 <a name="omitting_argument_labels"></a>
 ### 忽略参数标签
 
-如果你不希望为某个参数添加一个标签，可以使用一个下划线(`_`)来代替一个明确的参数标签。
+如果你不希望为某个参数添加一个标签，可以使用一个下划线（`_`）来代替一个明确的参数标签。
 
 ```swift
 func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
@@ -422,7 +422,7 @@ var mathFunction: (Int, Int) -> Int = addTwoInts
 
 ”定义一个叫做 `mathFunction` 的变量，类型是‘一个有两个 `Int` 型的参数并返回一个 `Int` 型的值的函数’，并让这个新变量指向 `addTwoInts` 函数”。
 
-`addTwoInts` 和 `mathFunction` 有同样的类型，所以这个赋值过程在 Swift 类型检查(type-check)中是允许的。
+`addTwoInts` 和 `mathFunction` 有同样的类型，所以这个赋值过程在 Swift 类型检查（type-check）中是允许的。
 
 现在，你可以用 `mathFunction` 来调用被赋值的函数了：
 

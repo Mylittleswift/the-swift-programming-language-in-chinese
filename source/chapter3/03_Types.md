@@ -64,6 +64,7 @@ Swift 语言存在两种类型：命名型类型和复合型类型。命名型�
 let someTuple: (Double, Double) = (3.14159, 2.71828)
 func someFunction(a: Int) { /* ... */ }
 ```
+
 在第一个例子中，表达式 `someTuple` 的类型被指定为 `(Double, Double)`。在第二个例子中，函数 `someFunction` 的参数 `a` 的类型被指定为 `Int`。
 
 类型注解可以在类型之前包含一个类型特性的可选列表。
@@ -93,7 +94,7 @@ let origin: Point = (0, 0)
 var someValue: ExampleModule.MyType
 ```
 
-> 类型标识符语法 
+> 类型标识符语法
 > 
 <a name="type-identifier"></a>
 > *类型标识符* → [*类型名称*](#type-name) [*泛型参数子句*](08_Generic_Parameters_and_Arguments.html#generic_argument_clause)<sub>可选</sub> | [*类型名称*](#type-name) [*泛型参数子句*](08_Generic_Parameters_and_Arguments.html#generic_argument_clause)<sub>可选</sub> **.** [*类型标识符*](#type-identifier)
@@ -152,27 +153,27 @@ someTuple = (left: 5, right: 5)  // 错误：命名类型不匹配
 func someFunction(left: Int, right: Int) {}
 func anotherFunction(left: Int, right: Int) {}
 func functionWithDifferentLabels(top: Int, bottom: Int) {}
- 
+
 var f = someFunction // 函数 f 的类型为 (Int, Int) -> Void, 而不是 (left: Int, right: Int) -> Void.
 f = anotherFunction              // 正确
 f = functionWithDifferentLabels  // 正确
- 
+
 func functionWithDifferentArgumentTypes(left: Int, right: String) {}
 func functionWithDifferentNumberOfArguments(left: Int, right: Int, top: Int) {}
- 
+
 f = functionWithDifferentArgumentTypes     // 错误
 f = functionWithDifferentNumberOfArguments // 错误
 ```
 
 由于变量标签不是函数类型的一部分，你可以在写函数类型的时候省略它们。
 
-```
+```swift
 var operation: (lhs: Int, rhs: Int) -> Int      // 错误
 var operation: (_ lhs: Int, _ rhs: Int) -> Int  // 正确
 var operation: (Int, Int) -> Int                // 正确
 ```
 
-如果一个函数类型包涵多个箭头(->)，那么函数类型将从右向左进行组合。例如，函数类型 `Int -> Int -> Int` 可以理解为 `Int -> (Int -> Int)`，也就是说，该函数类型的参数为 `Int` 类型，其返回类型是一个参数类型为 `Int`，返回类型为 `Int` 的函数类型。
+如果一个函数类型包涵多个箭头（->），那么函数类型将从右向左进行组合。例如，函数类型 `Int -> Int -> Int` 可以理解为 `Int -> (Int -> Int)`，也就是说，该函数类型的参数为 `Int` 类型，其返回类型是一个参数类型为 `Int`，返回类型为 `Int` 的函数类型。
 
 函数类型若要抛出错误就必须使用 `throws` 关键字来标记，若要重抛错误则必须使用 `rethrows` 关键字来标记。`throws` 关键字是函数类型的一部分，非抛出函数是抛出函数函数的一个子类型。因此，在使用抛出函数的地方也可以使用不抛出函数。抛出和重抛函数的相关描述见章节 [抛出函数与方法](05_Declarations.html#throwing_functions_and_methods) 和 [重抛函数与方法](05_Declarations.html#rethrowing_functions_and_methods)。
 
@@ -180,7 +181,7 @@ var operation: (Int, Int) -> Int                // 正确
 ### 对非逃逸闭包的限制
 非逃逸闭包函数不能作为参数传递到另一个非逃逸闭包函数的参数。这样的限制可以让 Swift 在编译时就完成更多的内存访问冲突检查， 而不是在运行时。举个例子：
 
-```
+```swift
 let external: (Any) -> Void = { _ in () }
 func takesTwoFunctions(first: (Any) -> Void, second: (Any) -> Void) {
     first(first)    // 错误
@@ -193,9 +194,10 @@ func takesTwoFunctions(first: (Any) -> Void, second: (Any) -> Void) {
     external(first) // 正确
 }
 ```
+
 在上面代码里，`takesTwoFunctions(first:second:)` 的两个参数都是函数。 它们都没有标记为 `@escaping`, 因此它们都是非逃逸的。
 
-上述例子里的被标记为“错误”的四个函数调用会产生编译错误。因为第一个和第二个参数是非逃逸函数，它们不能够被当作变量被传递到另一个非闭包函数参数。与此相反, 标记“正确”的两个函数不回产生编译错误。这些函数调用不会违反限制， 因为 `外部(external)` 不是 `takesTwoFunctions(first:second:)` 里的一个参数。
+上述例子里的被标记为“错误”的四个函数调用会产生编译错误。因为第一个和第二个参数是非逃逸函数，它们不能够被当作变量被传递到另一个非闭包函数参数。与此相反, 标记“正确”的两个函数不回产生编译错误。这些函数调用不会违反限制， 因为 `外部（external）` 不是 `takesTwoFunctions(first:second:)` 里的一个参数。
 
 如果你需要避免这个限制， 标记其中之一的参数为逃逸， 或者使用 `withoutActuallyEscaping(_:do:)` 函数临时地转换非逃逸函数的其中一个参数为逃逸函数。关于避免内存访问冲突，可以参阅[内存安全](../chapter2/24_Memory_Safety.html)。
 
@@ -213,7 +215,7 @@ func takesTwoFunctions(first: (Any) -> Void, second: (Any) -> Void) {
 <a name="function-type-argument"></a>
 > *函数类型参数* → [*特性列表*](06_Attributes.html#attributes)<sub>可选</sub> **输入输出参数**<sub>可选</sub> [*类型*](#type) | [*参数标签*](#argument-label) [*类型注解*](#type-annotation)
 <a name="argument-label"></a>
-> *参数标签* → [*标识符*](02_Lexical_Structure.html#identifier) 
+> *参数标签* → [*标识符*](02_Lexical_Structure.html#identifier)
 
 <a name="array_type"></a>
 ## 数组类型
@@ -271,7 +273,7 @@ let someDictionary: Dictionary<String, Int> = ["Alex": 31, "Paul": 39]
 > 字典类型语法
 > 
 <a name="dictionary-type"></a>
-> *字典类型* → **[** [*类型*](#type) **:** [*类型*](#type) **]** 
+> *字典类型* → **[** [*类型*](#type) **:** [*类型*](#type) **]**
 
 <a name="optional_type"></a>
 ## 可选类型
@@ -322,7 +324,7 @@ var explicitlyUnwrappedString: Optional<String>
 ```swift
 let tupleOfImplicitlyUnwrappedElements: (Int!, Int!)  // 错误
 let implicitlyUnwrappedTuple: (Int, Int)!             // 正确
- 
+
 let arrayOfImplicitlyUnwrappedElements: [Int!]        // 错误
 let implicitlyUnwrappedArray: [Int]!                  // 正确
 ```
@@ -335,7 +337,7 @@ let implicitlyUnwrappedArray: [Int]!                  // 正确
 
 关于隐式解析可选类型的更多细节，请参阅 [隐式解析可选类型](../chapter2/01_The_Basics.html#implicityly_unwrapped_optionals)。
 
-> 隐式解析可选类型语法 
+> 隐式解析可选类型语法
 > 
 <a name="implicitly-unwrapped-optional-type"></a>
 > *隐式解析可选类型* → [*类型*](#type) **!**
@@ -360,7 +362,7 @@ let implicitlyUnwrappedArray: [Int]!                  // 正确
 <a name="protocol-composition-continuation"></a>
 > *协议合成延续* → [*协议标识符*](#protocol-identifier) | [*协议合成类型*](#protocol-composition-type)
 <a name="protocol-identifier"></a>
-> *协议标识符* → [*类型标识符*](#type-identifier) 
+> *协议标识符* → [*类型标识符*](#type-identifier)
 
 <a name="metatype_type"></a>
 ## 元类型
@@ -410,7 +412,7 @@ let anotherInstance = metatype.init(string: "some string")
 > 元类型语法
 > 
 <a name="metatype-type"></a>
-> *元类型* → [*类型*](#type) **.** **Type** | [*类型*](#type) **.** **Protocol** 
+> *元类型* → [*类型*](#type) **.** **Type** | [*类型*](#type) **.** **Protocol**
 
 <a name="type_inheritance_clause"></a>
 ## 类型继承子句
@@ -423,7 +425,7 @@ let anotherInstance = metatype.init(string: "some string")
 
 枚举定义中的类型继承子句可以是一系列协议，或是枚举的原始值类型的命名型类型。在枚举定义中使用类型继承子句来指定原始值类型的例子，请参阅 [原始值](../chapter2/08_Enumerations.html#raw_values)。
 
-> 类型继承子句语法 
+> 类型继承子句语法
 > 
 <a name="type_inheritance_clause"></a>
 > *类型继承子句* → **:** [*类型继承列表*](#type-inheritance-list)
